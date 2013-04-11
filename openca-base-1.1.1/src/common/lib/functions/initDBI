@@ -1,0 +1,21 @@
+setPerformancePoint ("loaded initDBI");
+
+use OpenCA::DBI;
+
+setPerformancePoint ("use OpenCA::DBI");
+
+$db = newConnectDB ();
+
+setPerformancePoint ("database object instantiated");
+
+if ( not $db ) {
+	configError( i18nGettext (
+	                 "Cannot initialize OpenCA::DBI class! The database returns errorcode __ERRNO__. (__ERRVAL__)",
+	                 "__ERRNO__", $OpenCA::DBI::errno,
+	                 "__ERRVAL__", $OpenCA::DBI::errval
+	                         ) );
+}
+
+$versions->{DB}	= OpenCA::DBI->VERSION;
+
+1;
