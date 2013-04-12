@@ -56,8 +56,8 @@ use OpenCA::Tools;
 
 package OpenCA::User;
 
-## $Revision: 1.4 $
-($OpenCA::User::VERSION = '$Revision: 1.4 $' )=~ s/(?:^.*: (\d+))|(?:\s+\$$)/defined $1?"0\.0":""/eg; 
+## $Revision: 1.5 $
+($OpenCA::User::VERSION = '$Revision: 1.5 $' )=~ s/(?:^.*: (\d+))|(?:\s+\$$)/defined $1?"0\.0":""/eg; 
 
 our ($errno, $errval);
 
@@ -369,7 +369,7 @@ sub getStatus {
 	} elsif ( $user->{STATUS} =~ /UNCONFIRMED/i ) {
 		return UNCONFIRMED_STATUS;
 	} else {
-		$self->set_error( ERR_USER_STATUS_UNKNOWN, $user->{STATUS} );
+		$self->set_error( UNKNOWN_STATUS, $user->{STATUS} );
 		return UNKNOWN_STATUS;
 	}
 }
