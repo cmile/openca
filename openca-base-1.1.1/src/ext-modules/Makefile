@@ -12,14 +12,12 @@ MODULES.pm.3rd-party	= \
 	Bit-Vector-7.1		\
 	MIME-Base64-3.08	\
 	DB_File-1.820		\
-	DBI-1.609		\
 	DBD-mysql-4.013		\
 	DBD-Pg-2.16.1		\
 	Digest-HMAC-1.02	\
 	Digest-MD5-2.39 	\
 	Digest-SHA1-2.12	\
 	libintl-perl-1.20	\
-	Net-SSLeay-1.36		\
 	IO-Socket-SSL-1.31	\
 	IO-stringy-2.110	\
 	File-Temp-0.22		\
@@ -35,6 +33,11 @@ MODULES.pm.3rd-party	= \
 	perl-ldap-0.39		\
 	CGI.pm-3.49		\
 	XML-Twig-3.33
+
+	# removed, because this version cannot be built using recent db libraries
+	#DBI-1.609		\
+  # removed, because this version cannot be built using recent OpenSSL libs
+	#Net-SSLeay-1.36		\
 
 MODULES	= \
 	$(MODULES.pm.3rd-party)
