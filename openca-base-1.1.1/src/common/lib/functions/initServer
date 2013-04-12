@@ -64,6 +64,7 @@ our ($crypto_layer, $access_control, %access_control_cache);
 our ($cryptoShell, $tools, $db, $cmd, $self, $query, $session);
 our ($versions, $errno, $errval, $log, $journal);
 our ($xml_cache, $ui_html);
+our ($curr_user);
 
 $role_config = undef;
 $ui_html     = undef;
@@ -259,14 +260,14 @@ sub process_request {
 
     ## initialize output module
     $ui_html = OpenCA::UI::HTML->new (
-		HTDOCS_URL_PREFIX => getRequired('HtdocsUrlPrefix'),
-		SUPPORT_EMAIL	  => $support_email,
-                LANGUAGE          => $LANGUAGE,
-                CHARSET           => $CHARSET,
-		TOP_LOGO	  => $topLogo,
-		ENABLE_LOGIN	  => $enableLogin,
-		USER		  => $curr_user,
-                CGI               => $query);
+		HTDOCS_URL_PREFIX 	=> getRequired('HtdocsUrlPrefix'),
+		SUPPORT_EMAIL	  	=> $support_email,
+		LANGUAGE          	=> $LANGUAGE,
+		CHARSET           	=> $CHARSET,
+		TOP_LOGO	  		=> $topLogo,
+		ENABLE_LOGIN	  	=> $enableLogin,
+		USER		  		=> $curr_user,
+		CGI               	=> $query);
 
     setPerformancePoint ("reinitialization complete");
 
@@ -747,10 +748,9 @@ sub initUser {
 
     $users = OpenCA::User->new ( DB => $db );
 
-    if ( not defined ( $users )) {
-	generalError (
-		i18nGettext ( "OpenCA::User init error!" );
-	);
+    if ( not defined ( $users ))
+	{
+		generalError (i18nGettext("OpenCA::User init error!"));
     };
 
 }
